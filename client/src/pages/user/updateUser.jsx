@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { API_URL } from "../constant.js";
+import { API_URL } from "../../constant.js";
 import { useParams } from "react-router-dom";
 
 const UpdateUser = () => {
@@ -33,9 +33,16 @@ const UpdateUser = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(userData);
+        try{
+            const updatedData = await axios.put(
+                `${API_URL}/api/v1/user/${id}/update`,
+                userData
+            )
+        }catch (error){
+            console.log(error)
+        }
     };
 
     return (
