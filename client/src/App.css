@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    letter-spacing: 1px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn{
+    background-color: #000000;
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+}
