@@ -58,6 +58,31 @@ const getAllUsers = asyncHandler(async (req,resp)=> {
     }
 })
 
+const getUserById = asyncHandler(async (req,resp) => {
+    try{
+        // get user id
+
+        const userId = req.params.id;
+
+        // get user data
+
+        const user = await User.findById(userId);
+
+        // throw error if there is no user data
+
+        if(!user){
+            return new ApiError(404, "User not found")
+        }
+
+        return resp.status(200).json(
+            new ApiResponse(200, user, "User Found")
+        )
+        
+    }catch (error){
+        throw new ApiError(500, error, "Error to fetch user")
+    }
+})
+
 const updateUser = asyncHandler(async (req,resp) => {
     // get id from params
 
