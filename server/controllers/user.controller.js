@@ -130,6 +130,7 @@ const deleteUser = asyncHandler(async (req, resp) => {
 export {
     createUser,
     getAllUsers,
+    getUserById,
     updateUser,
     deleteUser
 }
