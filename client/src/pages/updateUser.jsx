@@ -1,29 +1,43 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import {API_URL} from "../constant.js";
-import {useParams} from "react-router-dom";
+import { API_URL } from "../constant.js";
+import { useParams } from "react-router-dom";
+
 const UpdateUser = () => {
-    const [userData, setUserData] = useState({})
-    const userId = useParams();
+    const { id } = useParams();
+    const [userData, setUserData] = useState({
+        name: '',
+        email: '',
+        phoneNo: '',
+        salary: ''
+    });
+
     useEffect(() => {
-        const getUserdata = async () => {
-            const user = await axios.get(`${API_URL}/api/v1/user/${userId.id}`)
-            setUserData(user.data.data)
-        }
-        getUserdata()
-    }, []);
+        const getUserData = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/api/v1/user/${id}`);
+                setUserData(response.data.data);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+
+        getUserData();
+    }, [id]);
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setUserData({
             ...userData,
             [name]: value
-        })
-    }
+        });
+    };
 
-    const handleSubmit = () => {
-        console.log(userData)
-    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(userData);
+    };
+
     return (
         <form onSubmit={handleSubmit}>
             <label>Name</label>

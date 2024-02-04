@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import {Link} from "react-router-dom"
 const Table = ({ header, data }) => {
     return (
         <table>
@@ -20,8 +21,10 @@ const Table = ({ header, data }) => {
                     <td>{row.email}</td>
                     <td>{row.phoneNo}</td>
                     <td>{row.salary}</td>
-                    <td><FaRegEdit />
-                        <MdDeleteOutline />
+                    <td>
+                        <Link to={`${row._id}/update`}>
+                            <FaRegEdit />
+                        </Link>
                     </td>
                 </tr>
             ))}
