@@ -1,8 +1,13 @@
-.homeContainer .textContainer{
-    width: 100%;
-    max-width: 550px;
-    margin: 0 auto;
-    padding: 10px;
+.homeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.textContainer{
+    width: 500px;
+    margin: 0 20px;
 }
 
 .homeContainer .textContainer .iconsContainer{

@@ -6,6 +6,7 @@ import { SiExpress } from "react-icons/si";
 import { Link } from "react-router-dom";
 import "../App.css"
 import "../style/home.css"
+import { FaArrowRight } from "react-icons/fa";
 const Home = () => {
     return (
         <div className="homeContainer">
@@ -21,7 +22,7 @@ const Home = () => {
                     applications due to its versatility and efficiency. In this tutorial, we will walk through the
                     process of creating a simple CRUD (Create, Read, Update, Delete) application using the MERN
                     stack.</p>
-                <Link to="/users" className="btn">Let's Start</Link>
+                <Link to="/users" className="btn">Let's Start <FaArrowRight /></Link>
             </div>
         </div>
     );

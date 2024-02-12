@@ -14,10 +14,16 @@ a{
 }
 
 .btn{
+    display: flex;
+    align-items: center;
+    gap: 10px;
     background-color: #000000;
     color: #ffffff;
-    padding: 12px;
-    border-radius: 25px;
-    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 12px;
+    width: 150px;
+    outline: none;
+    border: none;
     cursor: pointer;
 }

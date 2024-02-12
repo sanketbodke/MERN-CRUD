@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import { API_URL } from "../../constant.js";
-import { useParams } from "react-router-dom";
-import "../../style/form.css";
+import "../../style/form.css"
 import { useNavigate } from "react-router-dom";
 import { message } from 'antd';
 
-const UpdateUser = () => {
+const AddUser = () => {
     const navigate = useNavigate();
-    const { id } = useParams();
     const [userData, setUserData] = useState({
         name: '',
         email: '',
         phoneNo: '',
         salary: ''
     });
-
-    useEffect(() => {
-        const getUserData = async () => {
-            try {
-                const response = await axios.get(`${API_URL}/api/v1/user/${id}`);
-                setUserData(response.data.data);
-            } catch (error) {
-                console.error("Error fetching user data:", error);
-            }
-        };
-
-        getUserData();
-    }, [id]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -37,27 +22,27 @@ const UpdateUser = () => {
         });
     };
 
-    const showMessage = (type, content) => {
-        message[type](content);
+    const handleMessage = () => {
+        message.success('User Added');
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const updatedData = await axios.put(
-                `${API_URL}/api/v1/user/${id}/update`,
+            await axios.post(
+                `${API_URL}/api/v1/user/new`,
                 userData
-            );
-            showMessage('success', 'User Updated');
-            navigate("/users");
+            )
+            navigate("/users")
+            handleMessage();
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     };
 
     return (
-        <div className={"form-container"}>
-            <form onSubmit={handleSubmit} className={"form"}>
+        <div className="form-container">
+            <form onSubmit={handleSubmit} className="form">
                 <label>Name</label>
                 <input
                     type="text"
@@ -90,7 +75,7 @@ const UpdateUser = () => {
                     onChange={handleInputChange}
                 />
 
-                <button type="submit">Update</button>
+                <button type="submit">Add</button>
             </form>
             <img
                 src={"https://i.postimg.cc/cChwRb6W/Seminar-pana.png"}
@@ -100,4 +85,4 @@ const UpdateUser = () => {
     );
 };
 
-export default UpdateUser;
+export default AddUser;
