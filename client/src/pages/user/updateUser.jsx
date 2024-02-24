@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import "../../style/form.css";
 import { useNavigate } from "react-router-dom";
 import { message } from 'antd';
+import Spinner from "../../components/Spinner.jsx";
 
 const UpdateUser = () => {
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ const UpdateUser = () => {
         phoneNo: '',
         salary: ''
     });
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const getUserData = async () => {
@@ -44,12 +46,14 @@ const UpdateUser = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const updatedData = await axios.put(
+            setIsLoading(true)
+             await axios.put(
                 `${API_URL}/api/v1/user/${id}/update`,
                 userData
             );
             showMessage('success', 'User Updated');
             navigate("/users");
+            setIsLoading(false)
         } catch (error) {
             console.log(error);
         }
@@ -90,7 +94,9 @@ const UpdateUser = () => {
                     onChange={handleInputChange}
                 />
 
-                <button type="submit">Update</button>
+                <button type="submit">{isLoading ? <Spinner /> : (
+                    <p>Update</p>
+                )}</button>
             </form>
             <img
                 src={"https://i.postimg.cc/cChwRb6W/Seminar-pana.png"}

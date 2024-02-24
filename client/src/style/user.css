@@ -43,6 +43,10 @@ td:last-child {
     border-right: none;
 }
 
+.deleteBtn{
+    cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
     table {
         overflow-x: auto;

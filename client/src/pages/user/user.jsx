@@ -4,9 +4,9 @@ import { MdDeleteOutline } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../constant.js';
-import "../../style/user.css";
 import { FaPlus } from "react-icons/fa";
 import { message } from 'antd';
+import "../../style/user.css";
 
 const User = () => {
     const [tableData, setTableData] = useState([]);
@@ -67,7 +67,7 @@ const User = () => {
                                     <Link to={`/user/${row._id}/update`}>
                                         <FaRegEdit/>
                                     </Link>
-                                    <MdDeleteOutline onClick={() => handleDelete(row._id)}/>
+                                    <MdDeleteOutline className={"deleteBtn"} onClick={() => handleDelete(row._id)}/>
                                 </td>
                             </tr>
                         ))}
